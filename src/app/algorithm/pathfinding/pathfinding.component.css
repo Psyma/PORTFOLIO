@@ -3,16 +3,55 @@ table {
     text-indent: initial;
     border-spacing: 1px;
     margin-left: auto;
-    margin-right: auto;
-}
+    margin-right: auto; 
+    padding: 10px; 
+} 
 
 td {
     display: table-cell;
     vertical-align: inherit;
-}
-
+} 
 
 .dark-color {
     background-color: rgb(31, 33, 35) !important;
     color: white;
+}
+
+.width-height {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+.path { 
+    background-color: yellow;
+}
+
+.wall { 
+    background-color: black;
+}
+
+.visited { 
+    background-color: skyblue;
+}
+
+.unvisited { 
+    background-color: white;
+}
+
+.sNode { 
+    background-color: green;
+}
+
+.eNode { 
+    background-color: red;
+}
+
+label {
+    text-transform: uppercase;
+    margin-left: 10px;
+    font-size: large;
+}
+
+button {
+    font-size: large !important;
 }

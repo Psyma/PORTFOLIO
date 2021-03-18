@@ -8,8 +8,8 @@ import * as $ from "jquery";
     styleUrls: ['./pathfinding.component.css']
 })
 export class PathfindingComponent implements OnInit {
-    private row: number = 28;
-    private column: number = 40;
+    private row: number = 31;
+    private column: number = 41;
     private addWall: boolean = false;
     private move_sNode: boolean = false;
     private move_eNode: boolean = false;
@@ -18,7 +18,8 @@ export class PathfindingComponent implements OnInit {
     private eNode: any = undefined;
     private initial_pos_sNode: any = undefined;
     private initial_pos_eNode: any = undefined;
-    private test: any = null;
+    public algorithm_mssg = "Welcome to Pathfinding Visualizer! please select an algorithm";
+
     constructor() {
 
     }
@@ -116,5 +117,25 @@ export class PathfindingComponent implements OnInit {
                 }
             }
         }
+    }
+
+    public VisualizeAlgorithm() {
+        console.log("TATA")
+    }
+
+    public VisualizeAStar() {
+        this.algorithm_mssg = "visualize a* algorithm";
+    }
+
+    public VisualizeDijkstra() {
+        this.algorithm_mssg = "visualize dijkstra algorithm";
+    }
+
+    public VisualizeFloodFill() {
+        this.algorithm_mssg = "visualize flood fill algorithm";
+    }
+
+    public VisualizeGreedyBestFirst() {
+        this.algorithm_mssg = "visualize greedy best first algorithm";
     }
 }
