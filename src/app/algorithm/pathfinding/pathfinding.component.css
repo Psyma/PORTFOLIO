@@ -1,0 +1,18 @@
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+
+.dark-color {
+    background-color: rgb(31, 33, 35) !important;
+    color: white;
+}
