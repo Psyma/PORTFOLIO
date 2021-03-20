@@ -1,76 +1,69 @@
 <app-navbar></app-navbar>
-<div class="h-100 dark-color">
-    <div class="text-centered">
-        <div class="row">
-            <div class="col-12">
-                <div class="form-inline justify-content-center">
-                    <div class="path width-height">
-                    </div>
-                    <label>path</label>
-                    <div class="wall width-height">
-                    </div>
-                    <label>wall</label>
-                    <div class="visited width-height">
-                    </div>
-                    <label>visited</label>
-                    <div class="unvisited width-height">
-                    </div>
-                    <label>unvisited</label>
-                    <div class="sNode width-height">
-                    </div>
-                    <label>startnode</label>
-                    <div class="eNode width-height">
-                    </div>
-                    <label>targetnode</label>
+<div class="dark-color">
+    <div class="col-12">
+        <div class="form-inline justify-content-center">
+            <div class="path width-height">
+            </div>
+            <label>path</label>
+            <div class="wall width-height">
+            </div>
+            <label>wall</label>
+            <div class="visited width-height">
+            </div>
+            <label>visited</label>
+            <div class="unvisited width-height">
+            </div>
+            <label>unvisited</label>
+            <div class="sNode width-height">
+            </div>
+            <label>startnode</label>
+            <div class="eNode width-height">
+            </div>
+            <label>targetnode</label>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-inline justify-content-center ">
+            <div ngbDropdown>
+                <button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button" mat-button
+                    class="text-uppercase">algorithms</button>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
+                    <button mat-button ngbDropdownItem href="#" (click)="VisualizeAStar()"
+                        class="text-uppercase">A*</button>
+                    <button mat-button ngbDropdownItem href="#" (click)="VisualizeDijkstra()"
+                        class="text-uppercase">Dijkstra</button>
+                    <button mat-button ngbDropdownItem href="#" (click)="VisualizeFloodFill()"
+                        class="text-uppercase">flood fill</button>
+                    <button mat-button ngbDropdownItem href="#" (click)="VisualizeGreedyBestFirst()"
+                        class="text-uppercase">greedy best first</button>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-inline justify-content-center ">
-                    <div ngbDropdown>
-                        <button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button"
-                            mat-button class="text-uppercase">algorithms</button>
-                        <div ngbDropdownMenu aria-labelledby="navbarDropdown2"
-                            class="dropdown-menu dropdown-menu-right">
-                            <button mat-button ngbDropdownItem href="#" (click)="VisualizeAStar()"
-                                class="text-uppercase">A*</button>
-                            <button mat-button ngbDropdownItem href="#" (click)="VisualizeDijkstra()"
-                                class="text-uppercase">Dijkstra</button>
-                            <button mat-button ngbDropdownItem href="#" (click)="VisualizeFloodFill()"
-                                class="text-uppercase">flood fill</button>
-                            <button mat-button ngbDropdownItem href="#" (click)="VisualizeGreedyBestFirst()"
-                                class="text-uppercase">greedy best first</button>
-                        </div>
-                    </div>
-                    <button tabindex="0" mat-button class="text-uppercase"
-                        (click)="VisualizeAlgorithm()">visualize</button>
-                    <button tabindex="0" mat-button class="text-uppercase">clear board</button>
-                    <div ngbDropdown>
-                        <button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button"
-                            mat-button class="text-uppercase">maze</button>
-                        <div ngbDropdownMenu aria-labelledby="navbarDropdown2"
-                            class="dropdown-menu dropdown-menu-right">
-                            <button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                                class="text-uppercase">prims algorithm</button>
-                            <button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                                class="text-uppercase">recursive division</button>
-                            <button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                                class="text-uppercase">recursive backtracker</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-inline justify-content-center">
-                    <label>{{ algorithm_mssg }}</label>
+            <button tabindex="0" mat-button class="text-uppercase" (click)="VisualizeAlgorithm()">visualize</button>
+            <button tabindex="0" mat-button class="text-uppercase" (click)="ClearBoard()">clear board</button>
+            <div ngbDropdown>
+                <button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button" mat-button
+                    class="text-uppercase">maze</button>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
+                    <button mat-button ngbDropdownItem href="#" (click)="GenerateMazePrims()"
+                        class="text-uppercase">prims algorithm</button>
+                    <button mat-button ngbDropdownItem href="#" (click)="GenerateMazeRecursizeDivion()"
+                        class="text-uppercase">recursive division</button>
+                    <button mat-button ngbDropdownItem href="#" (click)="GenerateMazeRecursizeBacktracker()"
+                        class="text-uppercase">recursive backtracker</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="table-container">
+    <div class="col-12">
+        <div class="form-inline justify-content-center">
+            <label>
+                <i class="material-icons">format_quote</i>
+                {{ algorithm_mssg }}
+                <i class="material-icons">format_quote</i>
+            </label>
+        </div>
+    </div>
+    <div class="h-100 col-12 table-container">
         <table id="grid"></table>
     </div>
 </div>
