@@ -137,7 +137,6 @@ export class PathfindingComponent implements OnInit {
             }
         }
     }
-
     public VisualizeAlgorithm() {
         if (this.algorithm == Algorithm.Astar || this.algorithm == Algorithm.Dijkstra || this.algorithm == Algorithm.GreedyBestFirst) {
             this.RunPathfinding(this.row, this.column, this.td_array, this.algorithm)
@@ -219,6 +218,9 @@ export class PathfindingComponent implements OnInit {
             this.algorithm_mssg = "visualizing greedy best first"
         }
         else if (algorithm == Algorithm.Astar) {
+            gScore = Math.min(Math.abs(sx - x), Math.abs(sy - y));
+            hScore = Math.abs(ex - x) + Math.abs(ey - y) + cost;
+            this.algorithm_mssg = "visualizing A*"
         }
 
         let fScore = gScore + hScore;

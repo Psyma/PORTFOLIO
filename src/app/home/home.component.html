@@ -4,28 +4,14 @@
         <div class="col-4">
             <div class="aboutMe">
                 <h1 class="text-center text-uppercase">About Me</h1>
-                <img src="../../assets/images/ID.png" class="img-fluid rounded-circle border border-warning ID"
-                    alt="Responsive image">
+                <img src="../../assets/images/ID.png" draggable="false"
+                    class="img-fluid rounded-circle border border-warning ID" alt="Responsive image">
                 <figcaption class="figure-caption mt-4">
-                    My name is Rickben Anthony Q. Gimeda, I started my programming career in 2018, Which was during my
-                    second
-                    year in the Bachelor of Science in Computer Engineering program. I struggle a lot in programming
-                    courses
-                    but
-                    soon enough I started to like it, like how much I can do in the programming field. Then soon after I
-                    decided
-                    to take the path of being a programmer.
+                    {{about_me_caption1}}
                 </figcaption>
                 <br>
                 <figcaption class="figure-caption">
-                    I have made a couple of projects written in C++ and C# as part of my practice, I have studied more
-                    about
-                    Object-Oriented Programming and Data structure and Algorithms. My latest creation is the website
-                    itself.
-                    As
-                    part of my goal, I'm currently working to make myself a fine developer hoping to get my dream job as
-                    a
-                    software engineer soon.
+                    {{about_me_caption2}}
                 </figcaption>
                 <div class="text-center mt-2">
                     <a target="_blank" class="fa fa-google icons" href="mailto:rickbengimeda@gmail.com"></a>
@@ -34,107 +20,19 @@
                     <a target="_blank" class="fa fa-github icons ml-4" href="https://github.com/PSYMA"></a>
                 </div>
             </div>
-
         </div>
         <div class="col-8">
             <div class="projects">
                 <h1 class="text-center text-uppercase">Projects</h1>
-                <figure>
-                    <h2 class="text-center text-uppercase">Puzzle Game (C# WPF)</h2>
-                    <img src="../../assets/images/puzzleThumbNail.png" height=500
+                <figure *ngFor="let item of projects">
+                    <h2 class="text-center text-uppercase">{{item.title}}</h2>
+                    <img src="{{item.src}}" draggable="false" height=500
                         class="figure-img img-fluid rounded border border-warning w-100 thumbnail"
                         alt="Responsive image">
-                    <figcaption class="figure-caption">The Puzzle Game is the last C# project I created. It was during
-                        the
-                        early lockdown of March 2020, due to boredom I decided to create this. The game is the same as a
-                        typical
-                        puzzle game. You will just need to put everything in order for you to win. <a
-                            href="https://github.com/PSYMA/Puzzle-Game-CSharp-WPF" target="_blank">source code</a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <h2 class="text-center text-uppercase">Tic Tac Toe (C# WPF)</h2>
-                    <img src="../../assets/images/tictactoeThumbNail.png"
-                        class="figure-img img-fluid rounded border border-warning w-100 thumbnail"
-                        alt="Responsive image">
-                    <figcaption class="figure-caption">This Tic Tac Toe Game is my prelim project during my C# language
-                        course
-                        in college, this is not your traditional tic tac toe game, the game itself has more features and
-                        is
-                        way
-                        more graphical. The rules are the same. <a
-                            href="https://github.com/PSYMA/TIC-TAC-TOE-CSharp-WPF" target="_blank">source code</a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <h2 class="text-center text-uppercase">The Matching Game (C# WPF)</h2>
-                    <img src="../../assets/images/matchThumbNail.png"
-                        class="figure-img img-fluid rounded border border-warning w-100 thumbnail"
-                        alt="Responsive image">
-                    <figcaption class="figure-caption">This Matching Game is my midterm project during my C# language
-                        course
-                        in
-                        college, the game works by pairing its cell to the other cell, make mistakes and it will reduce
-                        your
-                        HP
-                        when HP goes to zero you lose. <a href="https://github.com/PSYMA/The-Matching-Game-CSharp-WPF-"
-                            target="_blank">source code</a></figcaption>
-                </figure>
-                <figure>
-                    <h2 class="text-center text-uppercase">The Hidden Battle Game (C# WPF)</h2>
-                    <img src="../../assets/images/battleThumbNail.png"
-                        class="figure-img img-fluid rounded border border-warning w-100 thumbnail"
-                        alt="Responsive image">
-                    <figcaption class="figure-caption">This Hidden Battle Game is my final project during my C# language
-                        course
-                        in college, The game is derived from this board game <a
-                            href="https://www.youtube.com/watch?v=4gHJlYLomrs" target="_blank"
-                            style="color: #004daa;">link</a>.
-                        this is the most challenging project I
-                        created in C# so far took me a lot of time to finished. <a
-                            href="https://github.com/PSYMA/The-Hidden-Game-Battle-CSharp-WPF-" target="_blank">source
-                            code</a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <h2 class="text-center text-uppercase">The Pong Game (C++)</h2>
-                    <img src="../../assets/images/pongThumnail.png"
-                        class="figure-img img-fluid rounded border border-warning w-100 thumbnail"
-                        alt="Responsive image">
-                    <figcaption class="figure-caption">This is one of my very first projects back in my early days in
-                        programming C language, in particular, The is game quite simple all you need to do is to control
-                        the
-                        paddle and catch the ball, make sure to catch the ball otherwise you will lose. clear all-stars
-                        and
-                        you
-                        win. <a href="https://github.com/PSYMA/Ping-pong-Game-simple-Cpp-Console" target="_blank">source
-                            code</a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <h2 class="text-center text-uppercase">Simple Library System (C++)</h2>
-                    <img src="../../assets/images/cppLibraryThumbnail.png"
-                        class="figure-img img-fluid rounded border border-warning w-100 thumbnail"
-                        alt="Responsive image">
-                    <figcaption class="figure-caption">This Simple Library System is my final project during my C
-                        language
-                        course. I struggle a lot during my creation of this project, I am still a newbie at that time.
-                        The
-                        project is quite easy: student borrow books as well return it. <a
-                            href="https://github.com/PSYMA/Library-System-simple-C-Cpp-Console" target="_blank">source
-                            code</a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <h2 class="text-center text-uppercase">Library System (SQLite integrated C# WPF)</h2>
-                    <img src="../../assets/images/csLibraryThumbNail.png"
-                        class="figure-img img-fluid rounded border border-warning w-100 thumbnail"
-                        alt="Responsive image">
-                    <figcaption class="figure-caption">This Library System is the upgraded version of my Simple Library
-                        System
-                        in C++, it's integrated with SQLite and offers a couple of features and it's graphical and user
-                        friendly. I decided to create this project to expose myself to a database project. <a
-                            href="https://github.com/PSYMA/Library-System-CSharp-WPF" target="_blank">source code</a>
+                    <figcaption>
+                        {{item.caption}}
+                        <a href="{{item.yt}} target=" target="_blank" *ngIf="item.yt != null">link. </a>
+                        <a href="{{item.link}}" target="_blank">source code</a>
                     </figcaption>
                 </figure>
             </div>
