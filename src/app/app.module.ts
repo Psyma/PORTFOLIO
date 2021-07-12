@@ -13,30 +13,32 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { PathfindingComponent } from './algorithm/pathfinding/pathfinding.component';
-import { SortingComponent } from './algorithm/sorting/sorting.component'
+import { SortingComponent } from './algorithm/sorting/sorting.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ResumeComponent } from './resume/resume.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        NavbarComponent,
-        PathfindingComponent,
-        SortingComponent,
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        NgbModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatMenuModule,
-        FontAwesomeModule,
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HomeComponent,
+		NavbarComponent,
+		PathfindingComponent,
+		SortingComponent,
+		ResumeComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		NgbModule,
+		MatSidenavModule,
+		MatIconModule,
+		MatToolbarModule,
+		MatButtonModule,
+		MatMenuModule,
+		FontAwesomeModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
