@@ -1,0 +1,74 @@
+<title>PORTFOLIO</title>
+<div class="container">
+	<div class="row dark-color">
+		<div class="col-4">
+			<div class="aboutMe">
+				<!-- 	<h1 class="text-center text-uppercase">About Me</h1> -->
+				<img
+					src="../../assets/images/ID.png"
+					draggable="false"
+					class="img-fluid rounded-circle border border-warning ID"
+					alt="Responsive image"
+				/>
+				<figcaption class="figure-caption mt-4">
+					{{ about_me_caption1 }}
+				</figcaption>
+				<br />
+				<figcaption class="figure-caption">
+					{{ about_me_caption2 }}
+				</figcaption>
+				<div class="text-center mt-2">
+					<a
+						target="_blank"
+						class="fab fa-google icons"
+						href="mailto:rickbengimeda@gmail.com"
+					></a>
+					<a
+						target="_blank"
+						class="fab fa-facebook-square icons ml-4"
+						href="https://web.facebook.com/jpakingpotomen"
+					></a>
+					<a
+						target="_blank"
+						class="fab fa-github icons ml-4"
+						href="https://github.com/PSYMA"
+					></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="projects">
+				<h1 class="text-center text-uppercase">Projects</h1>
+				<figure *ngFor="let item of projects">
+					<h2 class="text-center text-uppercase">{{ item.title }}</h2>
+					<img
+						src="{{ item.src }}"
+						draggable="true"
+						height="500"
+						class="
+							figure-img
+							img-fluid
+							rounded
+							border border-warning
+							w-100
+							thumbnail
+						"
+						alt="Responsive image"
+					/>
+					<figcaption>
+						{{ item.caption }}
+						<a
+							href="{{ item.yt }} target="
+							target="_blank"
+							*ngIf="item.yt != null"
+							>link.
+						</a>
+						<a href="{{ item.link }}" target="_blank"
+							>source code</a
+						>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+	</div>
+</div>

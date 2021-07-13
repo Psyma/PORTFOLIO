@@ -1,0 +1,46 @@
+figcaption {
+	text-indent: 10%;
+	text-align: justify;
+	text-shadow: none;
+	font-size: 16px !important;
+}
+
+img.thumbnail {
+	height: 300px;
+	box-shadow: grey 0px 0px 10px;
+	object-fit: fill;
+}
+
+.ID {
+	box-shadow: grey 0px 0px 10px;
+}
+
+.aboutMe {
+	position: sticky;
+	top: 100px !important;
+}
+
+.projects {
+	margin-top: 44px;
+}
+
+figcaption,
+h1,
+h2 {
+	color: white;
+}
+
+.dark-color {
+	background-color: rgb(31, 33, 35) !important;
+	color: white;
+}
+
+.icons {
+	font-size: 30px;
+	color: white;
+	text-decoration: none;
+}
+
+.icons:hover {
+	color: #0275d8;
+}
