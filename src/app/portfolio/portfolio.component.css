@@ -12,7 +12,9 @@ img.thumbnail {
 }
 
 .ID {
-	box-shadow: grey 0px 0px 10px;
+	box-shadow: grey 0px 0px 10px; 
+	width: 350px;
+	height: 350px;
 }
 
 .aboutMe {

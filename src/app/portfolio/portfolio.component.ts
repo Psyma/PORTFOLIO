@@ -7,7 +7,7 @@ import { SharedVariables } from '../Utils/SharedVariables';
 	styleUrls: ['./portfolio.component.css'],
 })
 export class PortfolioComponent implements OnInit {
-	constructor() {}
+	constructor() { }
 	about_me_caption1: string = '';
 	about_me_caption2: string = '';
 	projects: any = [];

@@ -7,8 +7,8 @@ import { SharedVariables } from '../Utils/SharedVariables';
 	styleUrls: ['./resume.component.css'],
 })
 export class ResumeComponent implements OnInit {
-	constructor() {}
-
+	constructor() {} 
+	
 	ngOnInit(): void {
 		SharedVariables.app_title = 'resume';
 	}

@@ -1,52 +1,54 @@
 <nav class="navbar navbar-expand-xl navbar-light bg-light sticky dark-color">
 	<!-- 	<span class="navbar-brand text-uppercase">{{ title }}</span> -->
-	<button
-		class="navbar-toggler"
-		type="button"
-		aria-controls="navbarContent"
-		[attr.aria-expanded]="!collapsed"
-		aria-label="Toggle navigation"
-		(click)="collapsed = !collapsed"
-	>
+	<button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
+		aria-label="Toggle navigation" (click)="collapsed = !collapsed">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
-	<div
-		class="navbar-collapse"
-		[class.collapse]="collapsed"
-		id="navbarContent"
-	>
+	<div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item" ngbDropdown>
-				<button mat-button class="text-uppercase" routerLink="/resume">
-					resume
+				<button mat-button class="text-uppercase" routerLink="/portfolio">
+					portfolio
 				</button>
 			</li>
-			<!--  <li class="nav-item" ngbDropdown>
-                <button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button" mat-button
-                    class="text-uppercase">games</button>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
-                    <button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                        class="text-uppercase">GAME 1</button>
-                    <button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                        class="text-uppercase">GAME 1</button>
-                    <button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
-                        class="text-uppercase">GAME 1</button>
-                </div>
-            </li> -->
+			<li class="nav-item" ngbDropdown>
+				<button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button" mat-button
+					class="text-uppercase">
+					games
+				</button>
+				<div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
+					<button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
+						class="text-uppercase">
+						GAME 1
+					</button>
+					<button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
+						class="text-uppercase">
+						GAME 1
+					</button>
+					<button mat-button ngbDropdownItem href="#" (click)="$event.preventDefault()"
+						class="text-uppercase">
+						GAME 1
+					</button>
+				</div>
+			</li>
 
-			<!-- <li class="nav-item" ngbDropdown>
-                <button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button" mat-button
-                    class="text-uppercase">algorithm visuallizer</button>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
-                    <button mat-button ngbDropdownItem routerLink="/sorting" (click)="$event.preventDefault()"
-                        class="text-uppercase">sorting
-                        visualizer</button>
-                    <button mat-button ngbDropdownItem routerLink="/pathfinding" (click)=" $event.preventDefault()"
-                        class="text-uppercase">pathfinding
-                        visualizer</button>
-                </div>
-            </li> -->
+			<li class="nav-item" ngbDropdown>
+				<button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown2" role="button" mat-button
+					class="text-uppercase">
+					algorithm visuallizer
+				</button>
+				<div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
+					<button mat-button ngbDropdownItem routerLink="/sorting" (click)="$event.preventDefault()"
+						class="text-uppercase">
+						sorting visualizer
+					</button>
+					<button mat-button ngbDropdownItem routerLink="/pathfinding" (click)="$event.preventDefault()"
+						class="text-uppercase">
+						pathfinding visualizer
+					</button>
+				</div>
+			</li>
 		</ul>
 	</div>
 </nav>

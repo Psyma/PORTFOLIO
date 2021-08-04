@@ -39,6 +39,199 @@ export class PathfindingComponent implements OnInit {
         this.SetGrid(this.row, this.column);
     }
 
+    public VisualizeAlgorithm() {
+        if (this.algorithm == Algorithm.Astar || this.algorithm == Algorithm.Dijkstra || this.algorithm == Algorithm.GreedyBestFirst) {
+            for (let i = 0; i < this.row; i++) {
+                for (let j = 0; j < this.column; j++) {
+                    let node = this.td_array[i][j];
+                    if (node.style.backgroundColor != 'white' && node.style.backgroundColor != 'black' && node.style.backgroundColor != 'green' && node.style.backgroundColor != 'red') {
+                        this.td_array[i][j].style.backgroundColor = 'white';
+                    }
+                }
+            }
+            this.RunPathfinding(this.row, this.column, this.td_array, this.algorithm)
+        }
+    }
+
+    public ClearBoard() {
+        for (let i = 0; i < this.row; i++) {
+            for (let j = 0; j < this.column; j++) {
+                this.td_array[i][j].style.backgroundColor = 'white';
+            }
+        }
+        this.sNode = this.orig_pos_sNode;
+        this.eNode = this.orig_pos_eNode;
+
+        this.sNode.style.backgroundColor = "green"
+        this.eNode.style.backgroundColor = "red"
+        this.initial_pos_sNode = this.sNode;
+        this.initial_pos_eNode = this.eNode;
+    }
+
+    public VisualizeAStar() {
+        this.algorithm_mssg = "visualize a* algorithm";
+        this.algorithm = Algorithm.Astar;
+    }
+
+    public VisualizeDijkstra() {
+        this.algorithm_mssg = "visualize dijkstra algorithm";
+        this.algorithm = Algorithm.Dijkstra;
+    }
+
+    public VisualizeFloodFill() {
+        this.algorithm_mssg = "visualize flood fill algorithm";
+    }
+
+    public VisualizeGreedyBestFirst() {
+        this.algorithm_mssg = "visualize greedy best first algorithm";
+        this.algorithm = Algorithm.GreedyBestFirst;
+    }
+
+    public GenerateMazePrims() {
+        this.algorithm_mssg = "generating maze (prims algorithm)";
+    }
+
+    public GenerateMazeRecursizeDivion() {
+        this.algorithm_mssg = "generating maze (recursize division algorithm)";
+    }
+
+    public GenerateMazeRecursizeBacktracker() {
+        this.algorithm_mssg = "generating maze (recursive backtracker algorithm)";
+    }
+
+    private AddNode(neighbour: Array<any>, td_array: Array<any>[], sx: number, sy: number, cost: number) {
+        let node = td_array[sy][sx];
+        if (node.style.backgroundColor != "black") {
+            node.setAttribute("cost", cost)
+            neighbour.push(node);
+        }
+    }
+
+    private CalculateScores(node: any, sNode: any, eNode: any, algorithm: Algorithm, cost: number = 0) {
+        let x = Number.parseInt(node.getAttribute("x"));
+        let y = Number.parseInt(node.getAttribute("y"));
+        let sx = Number.parseInt(sNode.getAttribute("x"));
+        let sy = Number.parseInt(sNode.getAttribute("y"));
+        let ex = Number.parseInt(eNode.getAttribute("x"));
+        let ey = Number.parseInt(eNode.getAttribute("y"));
+
+        let gScore = 0;
+        let hScore = 0;
+        if (algorithm == Algorithm.Dijkstra) {
+            gScore = this.djkstra_count++;
+            hScore = Math.max(Math.abs(ex - x), Math.abs(ey - y));
+            this.algorithm_mssg = "visualizing djkstra"
+        }
+        else if (algorithm == Algorithm.GreedyBestFirst) {
+            gScore = 0;
+            hScore = Math.abs(x - ex) + Math.abs(y - ey);
+            this.algorithm_mssg = "visualizing greedy best first"
+        }
+        else if (algorithm == Algorithm.Astar) {
+            gScore = Math.sqrt(Math.pow(x - sx, 2) + Math.pow(y - sy, 2));
+            hScore = Math.sqrt(Math.pow(x - ex, 2) + Math.pow(y - ey, 2));
+            this.algorithm_mssg = "visualizing A*"
+        }
+
+        let fScore = gScore + hScore;
+        node.setAttribute("gScore", gScore);
+        node.setAttribute("hScore", hScore);
+        node.setAttribute("fScore", fScore);
+    }
+
+    private async sleep(msec: number): Promise<unknown> { return new Promise(resolve => setTimeout(resolve, msec)); }
+
+    private async RunPathfinding(row: number, column: number, td_array: Array<any>[], algorithm: Algorithm) {
+        let open_list = new Array<any>();
+        let open_list_map = new Map<any, any>();
+        let closed_list = new Map<any, any>();
+        let parent_nodes = new Map<any, any>();
+        open_list.push(this.sNode);
+        open_list_map.set(this.sNode.id, this.sNode);
+
+        while (true) {
+            await this.sleep(0);
+            if (open_list.length == 0) {
+                this.algorithm_mssg = "no path found!"
+                return;
+            }
+            let current = open_list.sort((a, b) => Number.parseInt(b.getAttribute("fScore")) - Number.parseInt(a.getAttribute("fScore"))).pop();
+            open_list_map.delete(current.id)
+            current.style.backgroundColor = "violet"
+            this.CalculateScores(current, this.initial_pos_sNode, this.initial_pos_eNode, algorithm);
+            closed_list.set(current.id, current);
+
+            if (current == this.eNode) {
+                while (true) {
+                    await this.sleep(10)
+                    this.initial_pos_sNode.style.backgroundColor = "green";
+                    this.initial_pos_eNode.style.backgroundColor = "red";
+                    let node = parent_nodes.get(current)
+                    if (node == this.sNode) {
+                        this.algorithm_mssg = "Path created!"
+                        return;
+                    }
+                    current = node;
+                    node.style.backgroundColor = "yellow"
+                    this.algorithm_mssg = "Creating path..."
+                }
+            }
+
+            let sx = Number.parseInt(current.getAttribute("x"));
+            let sy = Number.parseInt(current.getAttribute("y"));
+            let neighbour = new Array<any>();
+            if (sx + 1 < column) { // east 
+                this.AddNode(neighbour, td_array, sx + 1, sy, 10);
+            }
+            if (sx - 1 >= 0) { // west 
+                this.AddNode(neighbour, td_array, sx - 1, sy, 10);
+            }
+            if (sy + 1 < row) { // south 
+                this.AddNode(neighbour, td_array, sx, sy + 1, 10);
+            }
+            if (sy - 1 >= 0) { // north 
+                this.AddNode(neighbour, td_array, sx, sy - 1, 10);
+            }
+            if (sy + 1 < row && sx + 1 < column) { // southwest  
+                this.AddNode(neighbour, td_array, sx + 1, sy + 1, 14);
+            }
+            if (sy - 1 >= 0 && sx - 1 >= 0) { // northeast 
+                this.AddNode(neighbour, td_array, sx - 1, sy - 1, 14);
+            }
+            if (sy + 1 < row && sx - 1 >= 0) { // southeast 
+                this.AddNode(neighbour, td_array, sx - 1, sy + 1, 14);
+            }
+            if (sy - 1 >= 0 && sx + 1 < column) { // northwest 
+                this.AddNode(neighbour, td_array, sx + 1, sy - 1, 14);
+            }
+
+            for (let i = 0; i < neighbour.length; i++) {
+                let node = neighbour[i]
+                if (closed_list.has(node.id)) {
+                    continue;
+                }
+
+                if (!open_list_map.has(node.id)) {
+                    this.CalculateScores(node, this.initial_pos_sNode, this.initial_pos_eNode, algorithm, Number.parseInt(node.getAttribute("cost")));
+                    if (node.style.backgroundColor != "green" || node.style.backgroundColor != "red") {
+                        node.style.backgroundColor = "skyblue"
+                    }
+                    // node.innerHTML = node.getAttribute("fScore")
+                    parent_nodes.set(node, current);
+                    if (Number.parseInt(current.getAttribute("fScore")) < Number.parseInt(node.getAttribute("fScore")) || !(open_list_map.has(node.id))) {
+                        open_list.push(node)
+                        open_list_map.set(node.id, node)
+                    }
+                }
+
+            }
+
+            this.initial_pos_sNode.style.backgroundColor = "green";
+            this.initial_pos_eNode.style.backgroundColor = "red";
+            // alert("")
+        }
+    }
+
     private SetGrid(row: number, column: number) {
         let table = $("#grid").get(0);
         let id = 0;
@@ -135,189 +328,6 @@ export class PathfindingComponent implements OnInit {
                     }
                 }
             }
-        }
-    }
-    public VisualizeAlgorithm() {
-        if (this.algorithm == Algorithm.Astar || this.algorithm == Algorithm.Dijkstra || this.algorithm == Algorithm.GreedyBestFirst) {
-            this.RunPathfinding(this.row, this.column, this.td_array, this.algorithm)
-        }
-    }
-
-    public ClearBoard() {
-        for (let i = 0; i < this.row; i++) {
-            for (let j = 0; j < this.column; j++) {
-                this.td_array[i][j].style.backgroundColor = 'white';
-            }
-        }
-        this.sNode = this.orig_pos_sNode;
-        this.eNode = this.orig_pos_eNode;
-
-        this.sNode.style.backgroundColor = "green"
-        this.eNode.style.backgroundColor = "red"
-        this.initial_pos_sNode = this.sNode;
-        this.initial_pos_eNode = this.eNode;
-    }
-
-    public VisualizeAStar() {
-        this.algorithm_mssg = "visualize a* algorithm";
-        this.algorithm = Algorithm.Astar;
-    }
-
-    public VisualizeDijkstra() {
-        this.algorithm_mssg = "visualize dijkstra algorithm";
-        this.algorithm = Algorithm.Dijkstra;
-    }
-
-    public VisualizeFloodFill() {
-        this.algorithm_mssg = "visualize flood fill algorithm";
-    }
-
-    public VisualizeGreedyBestFirst() {
-        this.algorithm_mssg = "visualize greedy best first algorithm";
-        this.algorithm = Algorithm.GreedyBestFirst;
-    }
-
-    public GenerateMazePrims() {
-        this.algorithm_mssg = "generating maze (prims algorithm)";
-    }
-
-    public GenerateMazeRecursizeDivion() {
-        this.algorithm_mssg = "generating maze (recursize division algorithm)";
-    }
-
-    public GenerateMazeRecursizeBacktracker() {
-        this.algorithm_mssg = "generating maze (recursive backtracker algorithm)";
-    }
-
-    private AddNode(neighbour: Array<any>, td_array: Array<any>[], sx: number, sy: number, cost: number) {
-        let node = td_array[sy][sx];
-        if (node.style.backgroundColor != "black") {
-            node.setAttribute("cost", cost)
-            neighbour.push(node);
-        }
-    }
-
-    private CalculateScores(node: any, sNode: any, eNode: any, algorithm: Algorithm, cost: number = 0) {
-        let x = Number.parseInt(node.getAttribute("x"));
-        let y = Number.parseInt(node.getAttribute("y"));
-        let sx = Number.parseInt(sNode.getAttribute("x"));
-        let sy = Number.parseInt(sNode.getAttribute("y"));
-        let ex = Number.parseInt(eNode.getAttribute("x"));
-        let ey = Number.parseInt(eNode.getAttribute("y"));
-
-        let gScore = 0;
-        let hScore = 0;
-        if (algorithm == Algorithm.Dijkstra) {
-            gScore = this.djkstra_count++;
-            hScore = Math.max(Math.abs(ex - x), Math.abs(ey - y));
-            this.algorithm_mssg = "visualizing djkstra"
-        }
-        else if (algorithm == Algorithm.GreedyBestFirst) {
-            gScore = 0;
-            hScore = Math.abs(x - ex) + Math.abs(y - ey);
-            this.algorithm_mssg = "visualizing greedy best first"
-        }
-        else if (algorithm == Algorithm.Astar) {
-            gScore = Math.min(Math.abs(sx - x), Math.abs(sy - y));
-            hScore = Math.abs(ex - x) + Math.abs(ey - y) + cost;
-            this.algorithm_mssg = "visualizing A*"
-        }
-
-        let fScore = gScore + hScore;
-        node.setAttribute("gScore", gScore);
-        node.setAttribute("hScore", hScore);
-        node.setAttribute("fScore", fScore);
-    }
-
-    private async sleep(msec: number): Promise<unknown> { return new Promise(resolve => setTimeout(resolve, msec)); }
-    private async RunPathfinding(row: number, column: number, td_array: Array<any>[], algorithm: Algorithm) {
-        let open_list = new Array<any>();
-        let open_list_map = new Map<any, any>();
-        let closed_list = new Map<any, any>();
-        let parent_nodes = new Map<any, any>();
-        open_list.push(this.sNode);
-        open_list_map.set(this.sNode.id, this.sNode);
-
-        while (true) {
-            await this.sleep(0);
-            if (open_list.length == 0) {
-                this.algorithm_mssg = "no path found!"
-                return;
-            }
-            let current = open_list.sort((a, b) => Number.parseInt(b.getAttribute("fScore")) - Number.parseInt(a.getAttribute("fScore"))).pop();
-            open_list_map.delete(current.id)
-            current.style.backgroundColor = "violet"
-            this.CalculateScores(current, this.initial_pos_sNode, this.initial_pos_eNode, algorithm);
-            closed_list.set(current.id, current);
-
-            if (current == this.eNode) {
-                while (true) {
-                    await this.sleep(10)
-                    this.initial_pos_sNode.style.backgroundColor = "green";
-                    this.initial_pos_eNode.style.backgroundColor = "red";
-                    let node = parent_nodes.get(current)
-                    if (node == this.sNode) {
-                        this.algorithm_mssg = "Path created!"
-                        return;
-                    }
-                    current = node;
-                    node.style.backgroundColor = "yellow"
-                    this.algorithm_mssg = "Creating path..."
-                }
-            }
-
-            let sx = Number.parseInt(current.getAttribute("x"));
-            let sy = Number.parseInt(current.getAttribute("y"));
-            let neighbour = new Array<any>();
-            if (sx + 1 < column) { // east 
-                this.AddNode(neighbour, td_array, sx + 1, sy, 10);
-            }
-            if (sx - 1 >= 0) { // west 
-                this.AddNode(neighbour, td_array, sx - 1, sy, 10);
-            }
-            if (sy + 1 < row) { // south 
-                this.AddNode(neighbour, td_array, sx, sy + 1, 10);
-            }
-            if (sy - 1 >= 0) { // north 
-                this.AddNode(neighbour, td_array, sx, sy - 1, 10);
-            }
-            if (sy + 1 < row && sx + 1 < column) { // southwest  
-                this.AddNode(neighbour, td_array, sx + 1, sy + 1, 14);
-            }
-            if (sy - 1 >= 0 && sx - 1 >= 0) { // northeast 
-                this.AddNode(neighbour, td_array, sx - 1, sy - 1, 14);
-            }
-            if (sy + 1 < row && sx - 1 >= 0) { // southeast 
-                this.AddNode(neighbour, td_array, sx - 1, sy + 1, 14);
-            }
-            if (sy - 1 >= 0 && sx + 1 < column) { // northwest 
-                this.AddNode(neighbour, td_array, sx + 1, sy - 1, 14);
-            }
-
-            for (let i = 0; i < neighbour.length; i++) {
-                let node = neighbour[i]
-                if (closed_list.has(node.id)) {
-                    continue;
-                }
-
-                if (!open_list_map.has(node.id)) {
-                    this.CalculateScores(node, this.initial_pos_sNode, this.initial_pos_eNode, algorithm, Number.parseInt(node.getAttribute("cost")));
-                    if (node.style.backgroundColor != "green" || node.style.backgroundColor != "red") {
-                        node.style.backgroundColor = "skyblue"
-                    }
-                    // node.innerHTML = node.getAttribute("fScore")
-                    parent_nodes.set(node, current);
-                    if (Number.parseInt(current.getAttribute("fScore")) < Number.parseInt(node.getAttribute("fScore")) || !(open_list_map.has(node.id))) {
-                        open_list.push(node)
-                        open_list_map.set(node.id, node)
-                    }
-                }
-
-            }
-
-            this.initial_pos_sNode.style.backgroundColor = "green";
-            this.initial_pos_eNode.style.backgroundColor = "red";
-            // alert("")
         }
     }
 }
