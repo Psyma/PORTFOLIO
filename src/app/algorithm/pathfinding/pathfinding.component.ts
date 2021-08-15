@@ -24,7 +24,8 @@ export class PathfindingComponent implements OnInit {
     private initial_pos_eNode: any = undefined;
     private orig_pos_sNode: any = undefined;
     private orig_pos_eNode: any = undefined;
-    public algorithm_mssg = "Welcome to Pathfinding Visualizer! please select an algorithm";
+    public algorithm_mssg: string = "Welcome to Pathfinding Visualizer! please select an algorithm";
+    public visualize_mssg: string = "visualize";
 
     private algorithm: Algorithm = Algorithm.None;
     private td_array: Array<any>[] = []
@@ -71,20 +72,24 @@ export class PathfindingComponent implements OnInit {
     public VisualizeAStar() {
         this.algorithm_mssg = "visualize a* algorithm";
         this.algorithm = Algorithm.Astar;
+        this.visualize_mssg = "visualize (A*)";
     }
 
     public VisualizeDijkstra() {
         this.algorithm_mssg = "visualize dijkstra algorithm";
         this.algorithm = Algorithm.Dijkstra;
+        this.visualize_mssg = "visualize (dijkstra)";
     }
 
     public VisualizeFloodFill() {
         this.algorithm_mssg = "visualize flood fill algorithm";
+        this.visualize_mssg = "visualize (ff)";
     }
 
     public VisualizeGreedyBestFirst() {
         this.algorithm_mssg = "visualize greedy best first algorithm";
         this.algorithm = Algorithm.GreedyBestFirst;
+        this.visualize_mssg = "visualize (gbf)";
     }
 
     public GenerateMazePrims() {
@@ -129,7 +134,7 @@ export class PathfindingComponent implements OnInit {
         }
         else if (algorithm == Algorithm.Astar) {
             gScore = Math.sqrt(Math.pow(x - sx, 2) + Math.pow(y - sy, 2));
-            hScore = Math.sqrt(Math.pow(x - ex, 2) + Math.pow(y - ey, 2));
+            hScore = Math.sqrt(Math.pow(x - ex, 2) + Math.pow(y - ey, 2)) + cost;
             this.algorithm_mssg = "visualizing A*"
         }
 
