@@ -32,7 +32,7 @@ export class PortfolioComponent implements OnInit {
                               software engineer soon.`;
 		this.projects.push({
 			title: 'Puzzle Game (C# WPF)',
-			src: '../../assets/images/puzzleThumbNail.png',
+			src: 'assets/images/puzzleThumbNail.png',
 			caption: `The Puzzle Game is the last C# project I created. It was during
                   the
                   early lockdown of March 2020, due to boredom I decided to create this. The game is the same as a
@@ -42,7 +42,7 @@ export class PortfolioComponent implements OnInit {
 		});
 		this.projects.push({
 			title: 'Tic Tac Toe (C# WPF)',
-			src: '../../assets/images/tictactoeThumbNail.png',
+			src: 'assets/images/tictactoeThumbNail.png',
 			caption: `This Tic Tac Toe Game is my prelim project during my C# language
                   course
                   in college, this is not your traditional tic tac toe game, the game itself has more features and
@@ -53,7 +53,7 @@ export class PortfolioComponent implements OnInit {
 		});
 		this.projects.push({
 			title: 'The Matching Game (C# WPF)',
-			src: '../../assets/images/matchThumbNail.png',
+			src: 'assets/images/matchThumbNail.png',
 			caption: `This Matching Game is my midterm project during my C# language
                   course
                   in
@@ -65,7 +65,7 @@ export class PortfolioComponent implements OnInit {
 		});
 		this.projects.push({
 			title: 'The Hidden Battle Game (C# WPF)',
-			src: '../../assets/images/battleThumbNail.png',
+			src: 'assets/images/battleThumbNail.png',
 			caption: `This Hidden Battle Game is my final project during my C# language
                   course
                   in college,
@@ -76,7 +76,7 @@ export class PortfolioComponent implements OnInit {
 		});
 		this.projects.push({
 			title: 'The Pong Game (C++)',
-			src: '../../assets/images/pongThumnail.png',
+			src: 'assets/images/pongThumnail.png',
 			caption: `This is one of my very first projects back in my early days in
                   programming C language, in particular, The is game quite simple all you need to do is to control
                   the
@@ -88,7 +88,7 @@ export class PortfolioComponent implements OnInit {
 		});
 		this.projects.push({
 			title: 'Simple Library System (C++)',
-			src: '../../assets/images/cppLibraryThumbnail.png',
+			src: 'assets/images/cppLibraryThumbnail.png',
 			caption: `This Simple Library System is my final project during my C
                   language
                   course. I struggle a lot during my creation of this project, I am still a newbie at that time.
@@ -98,7 +98,7 @@ export class PortfolioComponent implements OnInit {
 		});
 		this.projects.push({
 			title: 'Library System (SQLite integrated C# WPF)',
-			src: '../../assets/images/csLibraryThumbNail.png',
+			src: 'assets/images/csLibraryThumbNail.png',
 			caption: `This Library System is the upgraded version of my Simple Library
                   System
                   in C++, it's integrated with SQLite and offers a couple of features and it's graphical and user
