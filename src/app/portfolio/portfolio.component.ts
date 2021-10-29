@@ -22,12 +22,12 @@ export class PortfolioComponent implements OnInit {
                               soon enough I started to like it, like how much I can do in the programming field. Then soon after I
                               decided
                               to take the path of being a programmer.`;
-		this.about_me_caption2 = `I have made a couple of projects written in C++ and C# as part of my practice, I have studied more
+		this.about_me_caption2 = `I have made a couple of projects written in C++ and C# as part of my practice most of it is school project,
+							  I have studied more
                               about
-                              Object-Oriented Programming and Data structure and Algorithms. My latest creation is the website
-                              itself.
+                              Object-Oriented Programming and Data structure and Algorithms.
                               As
-                              part of my goal, I'm currently working to make myself a fine developer hoping to get my dream job as
+                              part of my goal I'm currently working to make myself a fine developer hoping to get my dream job as
                               a
                               software engineer soon.`;
 		this.projects.push({

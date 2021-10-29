@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 <div class="container">
 	<div class="row dark-color">
-		<div class="col-4">
+		<div class="col-4 ">
 			<div class="aboutMe">
 				<!-- 	<h1 class="text-center text-uppercase">About Me</h1> -->
 				<img src="../../assets/images/m_ID.jpg" draggable="false"
@@ -22,19 +22,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-8">
+		<div class="col-7">
 			<div class="projects">
 				<h1 class="text-center text-uppercase">Projects</h1>
 				<figure *ngFor="let item of projects">
 					<h2 class="text-center text-uppercase">{{ item.title }}</h2>
 					<img src="{{ item.src }}" draggable="true" height="500" class="
-							figure-img
-							img-fluid
-							rounded
-							border border-warning
-							w-100
-							thumbnail
-						" alt="Responsive image" />
+								figure-img
+								img-fluid
+								rounded
+								border border-warning
+								w-100
+								thumbnail
+							" alt="Responsive image" />
 					<figcaption>
 						{{ item.caption }}
 						<a href="{{ item.yt }} target=" target="_blank" *ngIf="item.yt != null">link.
@@ -44,5 +44,6 @@
 				</figure>
 			</div>
 		</div>
+
 	</div>
 </div>
